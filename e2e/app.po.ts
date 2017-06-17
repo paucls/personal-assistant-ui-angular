@@ -1,11 +1,11 @@
 import { browser, element, by } from 'protractor';
 
-export class ContactsUiAngularPage {
+export class PersonalAssistantPage {
   navigateTo() {
     return browser.get('/');
   }
 
-  getParagraphText() {
-    return element(by.css('app-root h1')).getText();
+  getNavbarTitle() {
+    return element(by.css('.navbar-header .navbar-brand')).getText();
   }
 }

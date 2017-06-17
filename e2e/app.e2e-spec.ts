@@ -1,14 +1,14 @@
-import { ContactsUiAngularPage } from './app.po';
+import {PersonalAssistantPage} from './app.po';
 
-describe('contacts-ui-angular App', () => {
-  let page: ContactsUiAngularPage;
+describe('Personal Assistant App', () => {
+  let page: PersonalAssistantPage;
 
   beforeEach(() => {
-    page = new ContactsUiAngularPage();
+    page = new PersonalAssistantPage();
   });
 
-  it('should display message saying app works', () => {
+  it('should display application title', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+    expect(page.getNavbarTitle()).toEqual('Personal Assistant');
   });
 });
