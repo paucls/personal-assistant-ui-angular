@@ -9,12 +9,20 @@ import { MockBackend } from '@angular/http/testing';
 import { BaseRequestOptions } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { ContactsComponent } from './contacts/contacts.component';
+import { TasksListComponent } from './tasks-list/tasks-list.component';
+import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ContactsComponent,
+    TasksListComponent,
+    ShoppingListComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     FormsModule,
     HttpModule
