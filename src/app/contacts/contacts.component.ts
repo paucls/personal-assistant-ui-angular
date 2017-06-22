@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DeleteContactModalComponent } from './delete-contact-modal/delete-contact-modal.component';
 import { ContactsService } from './contacts.service';
 import { Contact } from './contact';
 
@@ -12,7 +14,7 @@ export class ContactsComponent implements OnInit {
 
   contacts: Contact[];
 
-  constructor(private contactsService: ContactsService) { }
+  constructor(private contactsService: ContactsService, private modalService: NgbModal) { }
 
   ngOnInit() {
     this.contactsService
@@ -22,6 +24,8 @@ export class ContactsComponent implements OnInit {
 
   openDeleteContactModal(contact) {
     console.log('Delete', contact);
+
+    this.modalService.open(DeleteContactModalComponent);
   }
 
 }

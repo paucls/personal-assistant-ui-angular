@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 // used to create stub backend
 import { stubBackendProvider } from './stub-backed/stub-backend-provider';
@@ -14,6 +15,7 @@ import { ContactsComponent } from './contacts/contacts.component';
 import { TasksListComponent } from './tasks-list/tasks-list.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { DeleteContactModalComponent } from './contacts/delete-contact-modal/delete-contact-modal.component';
 
 @NgModule({
   declarations: [
@@ -21,19 +23,24 @@ import { NavbarComponent } from './navbar/navbar.component';
     ContactsComponent,
     TasksListComponent,
     ShoppingListComponent,
-    NavbarComponent
+    NavbarComponent,
+    DeleteContactModalComponent
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    NgbModule.forRoot()
   ],
   providers: [
     // used to create stub backend
     stubBackendProvider,
     MockBackend,
     BaseRequestOptions
+  ],
+  entryComponents: [
+    DeleteContactModalComponent
   ],
   bootstrap: [AppComponent]
 })
