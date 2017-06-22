@@ -24,9 +24,9 @@ export function stubBackendFactory(mockBackend: MockBackend, options: BaseReques
 
   console.log('Configuring stub Http backend...');
 
-  const CONTACTS: Contact[] = [
-    {id: 'contact-1', firstName: 'John', lastName: 'Walsh', company: 'Hackett and Sons', phone: '1-352-850-5507', email: 'Abbigail37@gmail.com'},
-    {id: 'contact-2', firstName: 'Ana', lastName: 'Clark', company: 'Ankunding LLC', phone: '845.600.0439', email: 'Carmela6@yahoo.com'}
+  let contacts: Contact[] = [
+    {id: '9509c8b4-ad34-4378-b49c-c9206dfd7f75', firstName: 'John', lastName: 'Walsh', company: 'Hackett and Sons', phone: '1-352-850-5507', email: 'Abbigail37@gmail.com'},
+    {id: '1b35d8f8-9e80-4316-b3e3-135a8f81200f', firstName: 'Ana', lastName: 'Clark', company: 'Ankunding LLC', phone: '845.600.0439', email: 'Carmela6@yahoo.com'}
   ];
 
   mockBackend.connections.subscribe((connection: MockConnection) => {
@@ -38,7 +38,18 @@ export function stubBackendFactory(mockBackend: MockBackend, options: BaseReques
       if (connection.request.method === RequestMethod.Get && connection.request.url.match('/contacts$')) {
         logRequest(connection.request);
 
-        connection.mockRespond(new Response(new ResponseOptions({body: CONTACTS.slice()})));
+        connection.mockRespond(new Response(new ResponseOptions({body: contacts.slice()})));
+        return;
+      }
+
+      // Delete contact
+      if (connection.request.method === RequestMethod.Delete && connection.request.url.match('/contacts/*')) {
+        logRequest(connection.request);
+
+        let id = getUuidFromUrl(connection.request.url);
+        contacts = contacts.filter(contact => contact.id !== id);
+
+        connection.mockRespond(new Response(new ResponseOptions()));
         return;
       }
 

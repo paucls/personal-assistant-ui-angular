@@ -50,4 +50,18 @@ describe('ContactsService', () => {
 
   });
 
+  describe('deleteContact()', () => {
+
+    it('should call the API to delete the contact', inject([ContactsService, MockBackend], fakeAsync((contactsService: ContactsService, mockBackend: MockBackend) => {
+      mockBackend.connections.subscribe(connection => {
+        expect(connection.request.method).toBe(RequestMethod.Delete);
+        expect(connection.request.url).toBe(`/contacts/${CONTACT_1.id}`);
+        connection.mockRespond(new Response(new ResponseOptions()));
+      });
+
+      contactsService.deleteContact(CONTACT_1.id);
+    })));
+
+  });
+
 });

@@ -6,10 +6,10 @@
     </button>
   </div>
   <div class="modal-body">
-    Are you sure you wish to delete <strong>contact.firstName contact.lastName</strong>?
+    Are you sure you wish to delete <strong>{{contact.firstName}} {{contact.lastName}}</strong>?
   </div>
   <div class="modal-footer">
     <button id="delete-contact-modal-cancel" class="btn btn-link" (click)="activeModal.dismiss()">Cancel</button>
-    <button id="delete-contact-modal-delete" class="btn btn-danger">Delete</button>
+    <button id="delete-contact-modal-delete" class="btn btn-danger" (click)="deleteContact()">Delete</button>
   </div>
 </div>
