@@ -20,4 +20,8 @@ export class ContactsComponent implements OnInit {
       .then(contacts => this.contacts = contacts);
   }
 
+  openDeleteContactModal(contact) {
+    console.log('Delete', contact);
+  }
+
 }

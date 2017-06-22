@@ -13,4 +13,8 @@ export class ContactsPage {
     return browser.get('/contacts');
   }
 
+  clickDeleteOnContactRow(rowNumber) {
+    this.contactsTableRows.get(rowNumber).element(by.css('.delete-contact-btn')).click();
+  }
+
 }
