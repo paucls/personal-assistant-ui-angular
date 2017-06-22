@@ -4,6 +4,8 @@
 This is a simple pet project application that shows how to implement Angular 4+ apps with unit tests, e2e tests against 
 a stub backend, configuration for deployment in Heroku, etc.
 
+It uses the [ng-bootstrap](https://ng-bootstrap.github.io) Bootstrap 4 components. 
+
 Some of the things that demo the app are:
  - having multiple feature modules (different pages) with router navigation.
  - example of a CRUD view with a table and modals with forms to add, edit, delete items.
