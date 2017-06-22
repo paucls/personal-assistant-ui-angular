@@ -6,7 +6,7 @@ export class PersonalAssistantPage {
   }
 
   getNavbarTitle() {
-    return element(by.css('.navbar-header .navbar-brand')).getText();
+    return element(by.css('.navbar .navbar-brand')).getText();
   }
 
   getSignedInUser() {

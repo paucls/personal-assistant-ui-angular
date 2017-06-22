@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { Http } from '@angular/http';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ContactsComponent } from './contacts.component';
 import { ContactsService } from './contacts.service';
@@ -23,6 +24,7 @@ describe('ContactsComponent', () => {
       declarations: [ ContactsComponent ],
       providers: [
         ContactsService,
+        {provide: NgbModal, useClass: class NgbModalStub {}},
         {provide: Http, useClass: class HttpStub {}}
       ]
     })
