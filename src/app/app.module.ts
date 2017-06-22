@@ -13,13 +13,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { ContactsComponent } from './contacts/contacts.component';
 import { TasksListComponent } from './tasks-list/tasks-list.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ContactsComponent,
     TasksListComponent,
-    ShoppingListComponent
+    ShoppingListComponent,
+    NavbarComponent
   ],
   imports: [
     AppRoutingModule,

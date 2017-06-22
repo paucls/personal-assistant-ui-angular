@@ -5,10 +5,15 @@ describe('Personal Assistant App', () => {
 
   beforeEach(() => {
     page = new PersonalAssistantPage();
+    page.go();
   });
 
   it('should display application title', () => {
-    page.navigateTo();
     expect(page.getNavbarTitle()).toEqual('Personal Assistant');
   });
+
+  it('should display signed in user name', () => {
+    expect(page.getSignedInUser()).toEqual('John Doe');
+  });
+
 });
