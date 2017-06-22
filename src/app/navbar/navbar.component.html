@@ -1,21 +1,17 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-              data-target="#contacts-navbar-collapse" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Personal Assistant</a>
-    </div>
-    <div class="collapse navbar-collapse" id="contacts-navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li><a routerLink="contacts" routerLinkActive="active">Contacts</a></li>
-        <li><a routerLink="tasks-list" routerLinkActive="active">Tasks</a></li>
-        <li><a routerLink="shopping-list" routerLinkActive="active">Shopping list</a></li>
-      </ul>
+<nav class="navbar navbar-toggleable-sm navbar-inverse fixed-top bg-inverse">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#appNavbar"
+          aria-controls="appNavbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="#">Personal Assistant</a>
 
-      <p class="navbar-text navbar-right">Signed in as <span class="signed-in-user">{{userName}}</span></p>
-    </div>
+  <div class="collapse navbar-collapse" id="appNavbar">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" routerLink="contacts" routerLinkActive="active"><a class="nav-link">Contacts</a></li>
+      <li class="nav-item" routerLink="tasks-list" routerLinkActive="active"><a class="nav-link">Tasks</a></li>
+      <li class="nav-item" routerLink="shopping-list" routerLinkActive="active"><a class="nav-link">Shopping list</a></li>
+    </ul>
+
+    <span class="navbar-text">Signed in as <span class="signed-in-user">{{userName}}</span></span>
   </div>
 </nav>
