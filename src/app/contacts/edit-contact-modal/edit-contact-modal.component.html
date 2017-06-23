@@ -1,21 +1,24 @@
-<div id="add-contact-modal">
+<div id="edit-contact-modal">
   <div class="modal-header">
-    <h3 class="modal-title">Edit Contact</h3>
+    <h4 class="modal-title">Edit Contact</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
   <div class="modal-body">
     <form name="editContactForm">
       <div class="form-group row">
-        <label class="col-md-4 control-label" for="firstName">First name</label>
+        <label class="col-md-4 control-label" for="first-name">First name</label>
         <div class="col-md-8">
-          <input id="firstName" name="firstName" type="text" class="form-control input-md" required
+          <input id="first-name" name="firstName" type="text" class="form-control input-md" required
                  [(ngModel)]="contact.firstName">
         </div>
       </div>
 
       <div class="form-group row">
-        <label class="col-md-4 control-label" for="lastName">Last name</label>
+        <label class="col-md-4 control-label" for="last-name">Last name</label>
         <div class="col-md-8">
-          <input id="lastName" name="lastName" type="text" class="form-control input-md"
+          <input id="last-name" name="lastName" type="text" class="form-control input-md"
                  [(ngModel)]="contact.lastName">
         </div>
       </div>
