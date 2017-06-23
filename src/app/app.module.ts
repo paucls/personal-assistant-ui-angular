@@ -1,8 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ToastModule } from 'ng2-toastr';
 
 // used to create stub backend
 import { stubBackendProvider } from './stub-backed/stub-backend-provider';
@@ -33,9 +35,11 @@ import { EditContactModalComponent } from './contacts/edit-contact-modal/edit-co
   imports: [
     AppRoutingModule,
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    ToastModule.forRoot()
   ],
   providers: [
     // used to create stub backend
