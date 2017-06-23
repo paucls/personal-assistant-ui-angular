@@ -2,6 +2,7 @@ import { async, ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/
 import { FormsModule } from '@angular/forms';
 import { Http } from '@angular/http';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 
 import { AddContactModalComponent } from './add-contact-modal.component';
 import { Contact } from '../contact';
@@ -22,7 +23,8 @@ describe('AddContactModalComponent', () => {
       declarations: [AddContactModalComponent],
       providers: [
         {provide: Http, useClass: class HttpStub {}},
-        {provide: NgbActiveModal, useClass: class NgbActiveModalStub { close() {}}}
+        {provide: NgbActiveModal, useClass: class NgbActiveModalStub { close() {}}},
+        {provide: ToastrService, useClass: class ToastrServiceStub { success() {}}}
       ]
     })
     .compileComponents();
