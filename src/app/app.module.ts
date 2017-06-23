@@ -15,7 +15,9 @@ import { ContactsComponent } from './contacts/contacts.component';
 import { TasksListComponent } from './tasks-list/tasks-list.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { AddContactModalComponent } from './contacts/add-contact-modal/add-contact-modal.component';
 import { DeleteContactModalComponent } from './contacts/delete-contact-modal/delete-contact-modal.component';
+import { EditContactModalComponent } from './contacts/edit-contact-modal/edit-contact-modal.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { DeleteContactModalComponent } from './contacts/delete-contact-modal/del
     TasksListComponent,
     ShoppingListComponent,
     NavbarComponent,
-    DeleteContactModalComponent
+    AddContactModalComponent,
+    DeleteContactModalComponent,
+    EditContactModalComponent
   ],
   imports: [
     AppRoutingModule,
@@ -40,7 +44,9 @@ import { DeleteContactModalComponent } from './contacts/delete-contact-modal/del
     BaseRequestOptions
   ],
   entryComponents: [
-    DeleteContactModalComponent
+    AddContactModalComponent,
+    DeleteContactModalComponent,
+    EditContactModalComponent
   ],
   bootstrap: [AppComponent]
 })
