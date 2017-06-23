@@ -27,6 +27,23 @@ export class ContactsService {
       .catch(this.handleError);
   }
 
+  saveContact(contact: Contact) {
+    const url = `${this.url}`;
+
+    return this.http.post(url, JSON.stringify(contact), {headers: this.headers})
+      .toPromise()
+      .then(response => response.json() as Contact)
+      .catch(this.handleError);
+  }
+
+  updateContact(contact: Contact) {
+    const url = `${this.url}/${contact.id}`;
+
+    return this.http.post(url, JSON.stringify(contact), {headers: this.headers})
+      .toPromise()
+      .catch(this.handleError);
+  }
+
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
     return Promise.reject(error.message || error);

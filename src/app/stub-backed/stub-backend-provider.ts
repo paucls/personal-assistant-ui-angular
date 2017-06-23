@@ -46,10 +46,35 @@ export function stubBackendFactory(mockBackend: MockBackend, options: BaseReques
       if (connection.request.method === RequestMethod.Delete && connection.request.url.match('/contacts/*')) {
         logRequest(connection.request);
 
-        let id = getUuidFromUrl(connection.request.url);
+        const id = getUuidFromUrl(connection.request.url);
         contacts = contacts.filter(contact => contact.id !== id);
 
         connection.mockRespond(new Response(new ResponseOptions()));
+        return;
+      }
+
+      // Save contact
+      if (connection.request.method === RequestMethod.Post && connection.request.url.match('/contacts$')) {
+        logRequest(connection.request);
+
+        let newContact = JSON.parse(connection.request.getBody());
+        newContact.id = generateUuid();
+        contacts.push(newContact);
+
+        connection.mockRespond(new Response(new ResponseOptions({body: newContact})));
+        return;
+      }
+
+      // Update contact
+      if (connection.request.method === RequestMethod.Post && connection.request.url.match('/contacts/*')) {
+        logRequest(connection.request);
+
+        const updatedContact = JSON.parse(connection.request.getBody());
+        const index = contacts.findIndex(contact => contact.id === updatedContact.id);
+
+        contacts[index] = updatedContact;
+
+        connection.mockRespond(new Response(new ResponseOptions({body: updatedContact})));
         return;
       }
 

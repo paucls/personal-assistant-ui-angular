@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {ContactsService} from '../contacts.service';
 import {Contact} from '../contact';
@@ -8,17 +8,16 @@ import {Contact} from '../contact';
   templateUrl: './edit-contact-modal.component.html',
   providers: [ContactsService]
 })
-export class EditContactModalComponent implements OnInit {
+export class EditContactModalComponent {
   @Input() contact: Contact;
 
   constructor(public activeModal: NgbActiveModal, public contactsService: ContactsService) {
   }
 
-  ngOnInit() {
-  }
-
   update(contact) {
-    console.log('update', contact);
+    this.contactsService
+      .updateContact(contact)
+      .then(this.activeModal.close);
   }
 
 }

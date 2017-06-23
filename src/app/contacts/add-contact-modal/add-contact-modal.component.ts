@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {ContactsService} from '../contacts.service';
 import {Contact} from '../contact';
@@ -8,18 +8,17 @@ import {Contact} from '../contact';
   templateUrl: './add-contact-modal.component.html',
   providers: [ContactsService]
 })
-export class AddContactModalComponent implements OnInit {
+export class AddContactModalComponent {
 
   contact: Contact = {};
 
   constructor(public activeModal: NgbActiveModal, public contactsService: ContactsService) {
   }
 
-  ngOnInit() {
-  }
-
   save(contact) {
-    console.log('save', contact);
+    this.contactsService
+      .saveContact(contact)
+      .then(this.activeModal.close);
   }
 
 }

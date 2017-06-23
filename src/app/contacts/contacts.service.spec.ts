@@ -1,9 +1,9 @@
-import { TestBed, inject, tick, fakeAsync } from '@angular/core/testing';
-import { BaseRequestOptions, Http, ConnectionBackend, Response, ResponseOptions, RequestMethod } from '@angular/http';
-import { MockBackend } from '@angular/http/testing';
+import {TestBed, inject, tick, fakeAsync} from '@angular/core/testing';
+import {BaseRequestOptions, Http, ConnectionBackend, Response, ResponseOptions, RequestMethod} from '@angular/http';
+import {MockBackend} from '@angular/http/testing';
 
-import { ContactsService } from './contacts.service';
-import { Contact } from './contact';
+import {ContactsService} from './contacts.service';
+import {Contact} from './contact';
 
 describe('ContactsService', () => {
 
@@ -60,6 +60,43 @@ describe('ContactsService', () => {
       });
 
       contactsService.deleteContact(CONTACT_1.id);
+    })));
+
+  });
+
+  describe('saveContact()', () => {
+
+    it('should call the API to save the new contact', inject([ContactsService, MockBackend], fakeAsync((contactsService: ContactsService, mockBackend: MockBackend) => {
+      const newContact = {firstName: 'John Doe'};
+      let result;
+
+      mockBackend.connections.subscribe(connection => {
+        expect(connection.request.method).toBe(RequestMethod.Post);
+        expect(connection.request.url).toBe(`/contacts`);
+        const options = new ResponseOptions({body: CONTACT_1});
+        connection.mockRespond(new Response(options));
+      });
+
+      contactsService.saveContact(newContact).then(contact => {
+        result = contact;
+      });
+      tick();
+
+      expect(result).toBe(CONTACT_1);
+    })));
+
+  });
+
+  describe('updateContact()', () => {
+
+    it('should call the API to update the contact', inject([ContactsService, MockBackend], fakeAsync((contactsService: ContactsService, mockBackend: MockBackend) => {
+      mockBackend.connections.subscribe(connection => {
+        expect(connection.request.method).toBe(RequestMethod.Post);
+        expect(connection.request.url).toBe(`/contacts/${CONTACT_1.id}`);
+        connection.mockRespond(new Response(new ResponseOptions()));
+      });
+
+      contactsService.updateContact(CONTACT_1);
     })));
 
   });
