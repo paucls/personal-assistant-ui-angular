@@ -87,13 +87,13 @@ describe('Contacts', () => {
       expect(addContactModal.cancelButton.getAttribute('disabled')).toBeNull();
     });
 
-    // it('should prevent the user from saving with invalid fields', function () {
-    //   expect(addContactModal.saveButton.getAttribute('disabled')).toBeTruthy();
-    //
-    //   addContactModal.firstNameInput.sendKeys('John');
-    //
-    //   expect(addContactModal.saveButton.getAttribute('disabled')).toBeFalsy();
-    // });
+    it('should prevent the user from saving with invalid fields', function () {
+      expect(addContactModal.saveButton.getAttribute('disabled')).toBeTruthy();
+
+      addContactModal.firstNameInput.sendKeys('John');
+
+      expect(addContactModal.saveButton.getAttribute('disabled')).toBeFalsy();
+    });
 
     it('should save contact when fields are populated and user clicks save', function () {
       addContactModal.firstNameInput.sendKeys('John');
@@ -125,7 +125,7 @@ describe('Contacts', () => {
       expect(editContactModal.title.getText()).toBe('Edit Contact');
 
       expect(editContactModal.updateButton.isDisplayed()).toBeTruthy();
-      // expect(editContactModal.updateButton.getAttribute('disabled')).toBeTruthy();
+      expect(editContactModal.updateButton.getAttribute('disabled')).toBeTruthy();
       expect(editContactModal.cancelButton.isDisplayed()).toBeTruthy();
       expect(editContactModal.cancelButton.getAttribute('disabled')).toBeNull();
     });

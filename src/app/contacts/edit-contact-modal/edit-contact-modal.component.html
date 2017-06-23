@@ -6,7 +6,7 @@
     </button>
   </div>
   <div class="modal-body">
-    <form name="editContactForm">
+    <form name="editContactForm" #editContactForm="ngForm">
       <div class="form-group row">
         <label class="col-md-4 control-label" for="first-name">First name</label>
         <div class="col-md-8">
@@ -69,6 +69,7 @@
             (click)="activeModal.dismiss()">Cancel
     </button>
     <button id="edit-contact-modal-update" class="btn btn-primary"
+            [disabled]="!editContactForm.form.valid || editContactForm.form.pristine"
             (click)="update(contact)">Update
     </button>
   </div>
