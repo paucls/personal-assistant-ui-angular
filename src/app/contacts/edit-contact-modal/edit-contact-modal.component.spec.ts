@@ -1,16 +1,17 @@
-import {async, ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/testing';
-import {FormsModule} from '@angular/forms';
-import {Http} from '@angular/http';
-import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-import {ToastrService} from 'ngx-toastr';
+import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { Http } from '@angular/http';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 
-import {EditContactModalComponent} from './edit-contact-modal.component';
-import {Contact} from 'app/contacts/contact';
-import {ContactsService} from '../contacts.service';
+import { EditContactModalComponent } from './edit-contact-modal.component';
+import { Contact } from 'app/contacts/contact';
+import { ContactsService } from '../contacts.service';
+import { ContactFixtureFactory } from '../contact-fixture.factory';
 
 describe('EditContactModalComponent', () => {
 
-  const CONTACT: Contact = {id: 'contact-1', firstName: 'John Doe'};
+  const CONTACT: Contact = ContactFixtureFactory.build();
 
   let component: EditContactModalComponent;
   let fixture: ComponentFixture<EditContactModalComponent>;

@@ -1,15 +1,14 @@
-import {TestBed, inject, tick, fakeAsync} from '@angular/core/testing';
-import {BaseRequestOptions, Http, ConnectionBackend, Response, ResponseOptions, RequestMethod} from '@angular/http';
-import {MockBackend} from '@angular/http/testing';
+import { TestBed, inject, tick, fakeAsync } from '@angular/core/testing';
+import { BaseRequestOptions, Http, ConnectionBackend, Response, ResponseOptions, RequestMethod } from '@angular/http';
+import { MockBackend } from '@angular/http/testing';
 
-import {ContactsService} from './contacts.service';
-import {Contact} from './contact';
+import { ContactsService } from './contacts.service';
+import { Contact } from './contact';
+import { ContactFixtureFactory } from './contact-fixture.factory';
 
 describe('ContactsService', () => {
 
-  const CONTACT_1: Contact = {id: 'contact-1', firstName: 'John Doe'};
-  const CONTACT_2: Contact = {id: 'contact-2', firstName: 'Ana Clark'};
-  const CONTACTS: Contact[] = [CONTACT_1, CONTACT_2];
+  const CONTACT: Contact = ContactFixtureFactory.build();
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -31,12 +30,13 @@ describe('ContactsService', () => {
   describe('getContacts()', () => {
 
     it('should return all contacts from API', inject([ContactsService, MockBackend], fakeAsync((contactsService: ContactsService, mockBackend: MockBackend) => {
+      const contacts: Contact[] = ContactFixtureFactory.buildList(2);
       let result;
 
       mockBackend.connections.subscribe(connection => {
         expect(connection.request.method).toBe(RequestMethod.Get);
         expect(connection.request.url).toBe('/contacts');
-        const options = new ResponseOptions({body: CONTACTS});
+        const options = new ResponseOptions({body: contacts});
         connection.mockRespond(new Response(options));
       });
 
@@ -45,7 +45,7 @@ describe('ContactsService', () => {
       });
       tick();
 
-      expect(result.length).toBe(CONTACTS.length);
+      expect(result.length).toBe(contacts.length);
     })));
 
   });
@@ -55,11 +55,11 @@ describe('ContactsService', () => {
     it('should call the API to delete the contact', inject([ContactsService, MockBackend], fakeAsync((contactsService: ContactsService, mockBackend: MockBackend) => {
       mockBackend.connections.subscribe(connection => {
         expect(connection.request.method).toBe(RequestMethod.Delete);
-        expect(connection.request.url).toBe(`/contacts/${CONTACT_1.id}`);
+        expect(connection.request.url).toBe(`/contacts/${CONTACT.id}`);
         connection.mockRespond(new Response(new ResponseOptions()));
       });
 
-      contactsService.deleteContact(CONTACT_1.id);
+      contactsService.deleteContact(CONTACT.id);
     })));
 
   });
@@ -73,7 +73,7 @@ describe('ContactsService', () => {
       mockBackend.connections.subscribe(connection => {
         expect(connection.request.method).toBe(RequestMethod.Post);
         expect(connection.request.url).toBe(`/contacts`);
-        const options = new ResponseOptions({body: CONTACT_1});
+        const options = new ResponseOptions({body: CONTACT});
         connection.mockRespond(new Response(options));
       });
 
@@ -82,7 +82,7 @@ describe('ContactsService', () => {
       });
       tick();
 
-      expect(result).toBe(CONTACT_1);
+      expect(result).toBe(CONTACT);
     })));
 
   });
@@ -92,11 +92,11 @@ describe('ContactsService', () => {
     it('should call the API to update the contact', inject([ContactsService, MockBackend], fakeAsync((contactsService: ContactsService, mockBackend: MockBackend) => {
       mockBackend.connections.subscribe(connection => {
         expect(connection.request.method).toBe(RequestMethod.Post);
-        expect(connection.request.url).toBe(`/contacts/${CONTACT_1.id}`);
+        expect(connection.request.url).toBe(`/contacts/${CONTACT.id}`);
         connection.mockRespond(new Response(new ResponseOptions()));
       });
 
-      contactsService.updateContact(CONTACT_1);
+      contactsService.updateContact(CONTACT);
     })));
 
   });

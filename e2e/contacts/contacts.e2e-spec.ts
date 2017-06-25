@@ -5,7 +5,7 @@ import {EditContactModalPage} from './edit-contact-modal.po';
 
 describe('Contacts', () => {
 
-  const CONTACTS_COUNT = 2;
+  const CONTACTS_COUNT = 5;
 
   let contactsPage: ContactsPage;
   let addContactModal: AddContactModalPage;
