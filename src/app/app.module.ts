@@ -13,23 +13,16 @@ import { BaseRequestOptions } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { ContactsComponent } from './contacts/contacts.component';
 import { CoreModule } from './core/core.module';
+import { ContactsModule } from './contacts/contacts.module';
 import { TasksListComponent } from './tasks-list/tasks-list.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { AddContactModalComponent } from './contacts/add-contact-modal/add-contact-modal.component';
-import { DeleteContactModalComponent } from './contacts/delete-contact-modal/delete-contact-modal.component';
-import { EditContactModalComponent } from './contacts/edit-contact-modal/edit-contact-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ContactsComponent,
     TasksListComponent,
-    ShoppingListComponent,
-    AddContactModalComponent,
-    DeleteContactModalComponent,
-    EditContactModalComponent
+    ShoppingListComponent
   ],
   imports: [
     AppRoutingModule,
@@ -42,17 +35,15 @@ import { EditContactModalComponent } from './contacts/edit-contact-modal/edit-co
 
     // Core Module
     CoreModule,
+
+    // Feature Modules
+    ContactsModule
   ],
   providers: [
     // used to create stub backend
     stubBackendProvider,
     MockBackend,
     BaseRequestOptions
-  ],
-  entryComponents: [
-    AddContactModalComponent,
-    DeleteContactModalComponent,
-    EditContactModalComponent
   ],
   bootstrap: [AppComponent]
 })
