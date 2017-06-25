@@ -29,7 +29,7 @@ import { ShoppingModule } from './shopping/shopping.module';
     FormsModule,
     HttpModule,
     NgbModule.forRoot(),
-    ToastrModule.forRoot({positionClass: 'toast-bottom-right'}),
+    ToastrModule.forRoot({positionClass: 'toast-bottom-right', timeOut: 1500}),
 
     // Core Module
     CoreModule,

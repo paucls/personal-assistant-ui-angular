@@ -7,10 +7,11 @@ import { ToastrService } from 'ngx-toastr';
 import { AddContactModalComponent } from './add-contact-modal.component';
 import { Contact } from '../contact';
 import { ContactsService } from '../contacts.service';
+import { ContactFixtureFactory } from '../contact-fixture.factory';
 
 describe('AddContactModalComponent', () => {
 
-  const CONTACT: Contact = {id: 'contact-1', firstName: 'John Doe'};
+  const CONTACT: Contact = ContactFixtureFactory.build();
 
   let component: AddContactModalComponent;
   let fixture: ComponentFixture<AddContactModalComponent>;

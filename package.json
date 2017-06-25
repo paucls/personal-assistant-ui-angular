@@ -33,6 +33,9 @@
     "rxjs": "^5.1.0",
     "zone.js": "^0.8.4",
 
+    "faker": "^4.1.0",
+    "rosie": "^1.6.0",
+
     "@angular/cli": "^1.1.2",
     "@angular/compiler-cli": "^4.2.3",
     "@types/jasmine": "2.5.38",
@@ -40,6 +43,7 @@
     "typescript": "~2.2.0"
   },
   "devDependencies": {
+    "@types/faker": "^4.1.0",
     "codelyzer": "~2.0.0",
     "jasmine-core": "~2.5.2",
     "jasmine-spec-reporter": "~3.2.0",
