@@ -1,13 +1,13 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {ContactsComponent} from './contacts/contacts.component';
-import {ShoppingListComponent} from './shopping-list/shopping-list.component';
-import {TasksListComponent} from './tasks-list/tasks-list.component';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { ContactsComponent } from './contacts/contacts.component';
+import { TasksComponent } from './tasks/tasks.component';
+import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 
 const appRoutes: Routes = [
   {path: 'contacts', component: ContactsComponent},
+  {path: 'tasks', component: TasksComponent},
   {path: 'shopping-list', component: ShoppingListComponent},
-  {path: 'tasks-list', component: TasksListComponent},
   {path: '', redirectTo: '/contacts', pathMatch: 'full'}
 ];
 

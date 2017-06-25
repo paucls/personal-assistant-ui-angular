@@ -15,13 +15,12 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
 import { ContactsModule } from './contacts/contacts.module';
-import { TasksListComponent } from './tasks-list/tasks-list.component';
+import { TasksModule } from './tasks/tasks.module';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TasksListComponent,
     ShoppingListComponent
   ],
   imports: [
@@ -37,7 +36,8 @@ import { ShoppingListComponent } from './shopping-list/shopping-list.component';
     CoreModule,
 
     // Feature Modules
-    ContactsModule
+    ContactsModule,
+    TasksModule
   ],
   providers: [
     // used to create stub backend
