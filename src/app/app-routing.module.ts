@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ContactsComponent } from './contacts/contacts.component';
 import { TasksComponent } from './tasks/tasks.component';
-import { ShoppingListComponent } from './shopping-list/shopping-list.component';
+import { ShoppingListComponent } from './shopping/shopping-list.component';
 
 const appRoutes: Routes = [
   {path: 'contacts', component: ContactsComponent},
