@@ -7,7 +7,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from "ngx-toastr";
 
 // used to create stub backend
-import { stubBackendProvider } from './stub-backed/stub-backend-provider';
+import { stubBackendProvider } from '../stub-backed/stub-backend-provider';
 import { MockBackend } from '@angular/http/testing';
 import { BaseRequestOptions } from '@angular/http';
 

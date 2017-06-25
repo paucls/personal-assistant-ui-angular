@@ -1,11 +1,11 @@
 import { Http, BaseRequestOptions, Response, ResponseOptions, RequestMethod, XHRBackend } from '@angular/http';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 
-import { environment } from '../../environments/environment';
+import { environment } from '../environments/environment';
 import { logRequest, generateUuid, getUuidFromUrl } from './stub-backend-utils';
 
-import { Contact } from '../contacts/contact';
-import { ContactFixtureFactory } from '../contacts/contact-fixture.factory';
+import { Contact } from '../app/contacts/contact';
+import { ContactFixtureFactory } from '../app/contacts/contact-fixture.factory';
 
 /**
  * Provider to allow the use of a stub backend instead of a real Http service for backend-less development.
