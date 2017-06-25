@@ -7,11 +7,11 @@ a stub backend, configuration for deployment in Heroku, etc.
 It uses Bootstrap 4 css framework, and components from [ng-bootstrap](https://ng-bootstrap.github.io)
 and [ngx-toastr](https://github.com/scttcper/ngx-toastr) projects.
 
-Some of the things that demo the app are:
-- CRUD view with a table and modals with forms to add, edit, delete items. 
+Some of the things that demo the app are: 
 - Modular application, defines feature modules to simplify main app.module.
-- Router navigation.
+- Router navigation for routes and child routes.
 - Use of fixture factories based in Rosie + Faker to generate random data for stub backend and unit test purposes.
+- Example of CRUD feature with modals for adding, editing and deleting items and toast notifications.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
 

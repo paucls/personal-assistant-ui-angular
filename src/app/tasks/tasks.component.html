@@ -9,6 +9,22 @@
   <!-- Page Header -->
   <div class="page-header">
     <h2>Tasks</h2>
+
+    <ul class="nav nav-pills sub-navbar">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="overview" routerLinkActive="active">Overview</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="history" routerLinkActive="active">History</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="settings" routerLinkActive="active">Settings</a>
+      </li>
+    </ul>
   </div>
 
+  <!-- Page Body -->
+  <div>
+    <router-outlet></router-outlet>
+  </div>
 </div>

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 import { ContactsComponent } from './contacts.component';
 import { AddContactModalComponent } from './add-contact-modal/add-contact-modal.component';
@@ -10,7 +11,8 @@ import { EditContactModalComponent } from './edit-contact-modal/edit-contact-mod
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    RouterModule
   ],
   declarations: [
     ContactsComponent,
