@@ -14,9 +14,9 @@ import { BaseRequestOptions } from '@angular/http';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ContactsComponent } from './contacts/contacts.component';
+import { CoreModule } from './core/core.module';
 import { TasksListComponent } from './tasks-list/tasks-list.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { NavbarComponent } from './navbar/navbar.component';
 import { AddContactModalComponent } from './contacts/add-contact-modal/add-contact-modal.component';
 import { DeleteContactModalComponent } from './contacts/delete-contact-modal/delete-contact-modal.component';
 import { EditContactModalComponent } from './contacts/edit-contact-modal/edit-contact-modal.component';
@@ -27,7 +27,6 @@ import { EditContactModalComponent } from './contacts/edit-contact-modal/edit-co
     ContactsComponent,
     TasksListComponent,
     ShoppingListComponent,
-    NavbarComponent,
     AddContactModalComponent,
     DeleteContactModalComponent,
     EditContactModalComponent
@@ -39,7 +38,10 @@ import { EditContactModalComponent } from './contacts/edit-contact-modal/edit-co
     FormsModule,
     HttpModule,
     NgbModule.forRoot(),
-    ToastrModule.forRoot({positionClass: 'toast-bottom-right'})
+    ToastrModule.forRoot({positionClass: 'toast-bottom-right'}),
+
+    // Core Module
+    CoreModule,
   ],
   providers: [
     // used to create stub backend
