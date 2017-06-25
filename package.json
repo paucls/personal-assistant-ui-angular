@@ -4,7 +4,10 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "heroku-prebuild": "npm install -g http-server",
+    "heroku-postbuild": "ng build --prod",
+    "start": "http-server dist/",
+    "start:dev": "ng serve",
     "build": "ng build",
     "test": "ng test --watch false",
     "lint": "ng lint",
