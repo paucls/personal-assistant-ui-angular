@@ -8,6 +8,7 @@ export class ContactsPage {
   // Body
   addContactButton = element(by.id('add-contact-button'));
   contactsTableRows = element.all(by.css('#contacts tbody > tr'));
+  successToast = element(by.css('#toast-container .toast-success'));
 
   go() {
     return browser.get('/contacts');

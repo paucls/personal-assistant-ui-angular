@@ -39,3 +39,9 @@ Before running the tests make sure you are serving the app via `ng serve`.
 
 ## Version History
 
+## Documentation
+Links to some of the articles and documentation used to implement this project:
+
+- Issue testing ngx-toastr with protractor
+https://github.com/scttcper/ngx-toastr/issues/109
+

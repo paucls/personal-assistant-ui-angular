@@ -82,7 +82,7 @@ describe('Contacts', () => {
       expect(addContactModal.notesTextArea.isDisplayed()).toBeTruthy();
 
       expect(addContactModal.saveButton.isDisplayed()).toBeTruthy();
-      // expect(addContactModal.saveButton.getAttribute('disabled')).toBeTruthy();
+      expect(addContactModal.saveButton.getAttribute('disabled')).toBeTruthy();
       expect(addContactModal.cancelButton.isDisplayed()).toBeTruthy();
       expect(addContactModal.cancelButton.getAttribute('disabled')).toBeNull();
     });
