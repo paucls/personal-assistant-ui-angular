@@ -6,10 +6,10 @@ export class PersonalAssistantPage {
   }
 
   getNavbarTitle() {
-    return element(by.css('.navbar .navbar-brand')).getText();
+    return element(by.css('.header .branding .title')).getText();
   }
 
   getSignedInUser() {
-    return element(by.css('.navbar .signed-in-user')).getText();
+    return element(by.css('.header .signed-in-user')).getText();
   }
 }

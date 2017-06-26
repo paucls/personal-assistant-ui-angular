@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
+import { ClarityModule } from 'clarity-angular';
 
 import { NavbarComponent } from './navbar.component';
 
@@ -12,6 +13,7 @@ describe('NavbarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ ClarityModule.forRoot() ],
       declarations: [ NavbarComponent ] // declare the test component
     })
       .compileComponents();
@@ -22,7 +24,7 @@ describe('NavbarComponent', () => {
     component = fixture.componentInstance; // NavbarComponent test instance
 
     // query for the navbar nav tag by CSS element selector
-    de = fixture.debugElement.query(By.css('nav.navbar'));
+    de = fixture.debugElement.query(By.css('clr-header'));
     el = de.nativeElement;
   });
 
