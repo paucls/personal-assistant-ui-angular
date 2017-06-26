@@ -1,15 +1,9 @@
-<div id="contacts">
+<div id="contacts" class="content-container">
+  <div class="content-area">
 
-  <!-- Page Header -->
-  <div class="page-header">
-    <h2>Contacts</h2>
-  </div>
-
-  <!-- Page Body -->
-  <div>
     <div class="actions-bar pull-right">
-      <button id="add-contact-button" type="button" class="btn btn-primary" (click)="openAddContactModal()">
-        <span class="fa fa-plus" aria-hidden="true"></span> Add new contact
+      <button id="add-contact-button" type="button" class="btn btn-outline" (click)="openAddContactModal()">
+        Add new contact
       </button>
     </div>
 
@@ -34,18 +28,18 @@
         <td>{{contact.phone}}</td>
         <td>{{contact.email}}</td>
         <td class="text-right">
-          <button class="btn btn-sm btn-info edit-contact-btn" type="submit" title="Edit contact"
+          <button class="btn btn-sm btn-link edit-contact-btn" type="submit" title="Edit contact"
                   (click)="openEditContactModal(contact)">
-            <span class="fa fa-pencil" aria-hidden="true"></span>
+            <clr-icon shape="pencil"></clr-icon>
           </button>
-          <button class="btn btn-sm btn-danger delete-contact-btn" type="submit" title="Delete contact"
+          <button class="btn btn-sm btn-link delete-contact-btn" type="submit" title="Delete contact"
                   (click)="openDeleteContactModal(contact)">
-            <span class="fa fa-trash-o" aria-hidden="true"></span>
+            <clr-icon shape="trash"></clr-icon>
           </button>
         </td>
       </tr>
       </tbody>
     </table>
-  </div>
 
+  </div>
 </div>

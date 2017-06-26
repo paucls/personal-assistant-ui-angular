@@ -3,6 +3,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { Http } from '@angular/http';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ClarityModule } from 'clarity-angular';
 
 import { ContactsComponent } from './contacts.component';
 import { ContactsService } from './contacts.service';
@@ -21,6 +22,7 @@ describe('ContactsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ ClarityModule.forRoot() ],
       declarations: [ ContactsComponent ],
       providers: [
         ContactsService,

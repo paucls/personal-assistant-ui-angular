@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-tasks-history',
   template: `
-    <div class="jumbotron">
+    <div>
       <h3>
         History feature
       </h3>
