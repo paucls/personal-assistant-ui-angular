@@ -22,10 +22,6 @@ describe('Contacts', () => {
 
   describe('Header', function () {
 
-    it('should display page title', function () {
-      expect(contactsPage.header.getText()).toBe('Contacts');
-    });
-
     it('should display a button for add project', function () {
       expect(contactsPage.addContactButton.isDisplayed()).toBe(true);
     });
