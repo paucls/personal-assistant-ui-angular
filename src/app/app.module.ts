@@ -4,7 +4,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ToastrModule } from "ngx-toastr";
+import { ToastrModule } from 'ngx-toastr';
+import { ClarityModule } from 'clarity-angular';
 
 // used to create stub backend
 import { stubBackendProvider } from '../stub-backed/stub-backend-provider';
@@ -30,6 +31,7 @@ import { ShoppingModule } from './shopping/shopping.module';
     HttpModule,
     NgbModule.forRoot(),
     ToastrModule.forRoot({positionClass: 'toast-bottom-right', timeOut: 1500}),
+    ClarityModule.forRoot(),
 
     // Core Module
     CoreModule,

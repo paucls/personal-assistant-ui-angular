@@ -19,12 +19,16 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "../node_modules/bootswatch/yeti/bootstrap.css",
-        "../node_modules/font-awesome/css/font-awesome.min.css",
+        "../node_modules/clarity-icons/clarity-icons.min.css",
+        "../node_modules/clarity-ui/clarity-ui.min.css",
         "../node_modules/ngx-toastr/toastr.css",
         "styles.scss"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/mutationobserver-shim/dist/mutationobserver.min.js",
+        "../node_modules/@webcomponents/custom-elements/custom-elements.min.js",
+        "../node_modules/clarity-icons/clarity-icons.min.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
