@@ -1,76 +1,87 @@
-<div id="add-contact-modal">
-  <div class="modal-header">
-    <h4 class="modal-title">Add Contact</h4>
-    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
+<clr-modal [(clrModalOpen)]="isModalOpened">
+  <h4 class="modal-title">Add Contact</h4>
   <div class="modal-body">
     <form name="addContactForm" #addContactForm="ngForm">
-      <div class="form-group row">
-        <label class="col-md-4 control-label" for="first-name">First name</label>
-        <div class="col-md-8">
-          <input id="first-name" name="firstName" type="text" class="form-control input-md" required
-                 [(ngModel)]="contact.firstName">
+      <section class="form-block">
+        <div class="form-group row">
+          <div class="col-md-4">
+            <label for="first-name">First name</label>
+          </div>
+          <div class="col-md-8">
+            <input id="first-name" name="firstName" type="text" class="form-control input-md" required
+                   [(ngModel)]="contact.firstName">
+          </div>
         </div>
-      </div>
 
-      <div class="form-group row">
-        <label class="col-md-4 control-label" for="last-name">Last name</label>
-        <div class="col-md-8">
-          <input id="last-name" name="lastName" type="text" class="form-control input-md"
-                 [(ngModel)]="contact.lastName">
+        <div class="form-group row">
+          <div class="col-md-4">
+            <label for="last-name">Last name</label>
+          </div>
+          <div class="col-md-8">
+            <input id="last-name" name="lastName" type="text" class="form-control input-md"
+                   [(ngModel)]="contact.lastName">
+          </div>
         </div>
-      </div>
 
-      <div class="form-group row">
-        <label class="col-md-4 control-label" for="company">Company</label>
-        <div class="col-md-8">
-          <input id="company" name="company" type="text" class="form-control input-md"
-                 [(ngModel)]="contact.company">
+        <div class="form-group row">
+          <div class="col-md-4">
+            <label for="company">Company</label>
+          </div>
+          <div class="col-md-8">
+            <input id="company" name="company" type="text" class="form-control input-md"
+                   [(ngModel)]="contact.company">
+          </div>
         </div>
-      </div>
 
-      <div class="form-group row">
-        <label class="col-md-4 control-label" for="phone">Phone</label>
-        <div class="col-md-8">
-          <input id="phone" name="phone" type="text" class="form-control input-md"
-                 [(ngModel)]="contact.phone">
+        <div class="form-group row">
+          <div class="col-md-4">
+            <label for="phone">Phone</label>
+          </div>
+          <div class="col-md-8">
+            <input id="phone" name="phone" type="text" class="form-control input-md"
+                   [(ngModel)]="contact.phone">
+          </div>
         </div>
-      </div>
 
-      <div class="form-group row">
-        <label class="col-md-4 control-label" for="email">Email</label>
-        <div class="col-md-8">
-          <input id="email" name="email" type="text" class="form-control input-md"
-                 [(ngModel)]="contact.email">
+        <div class="form-group row">
+          <div class="col-md-4">
+            <label for="email">Email</label>
+          </div>
+          <div class="col-md-8">
+            <input id="email" name="email" type="text" class="form-control input-md"
+                   [(ngModel)]="contact.email">
+          </div>
         </div>
-      </div>
 
-      <div class="form-group row">
-        <label class="col-md-4 control-label" for="address">Address</label>
-        <div class="col-md-8">
-          <input id="address" name="address" type="text" class="form-control input-md"
-                 [(ngModel)]="contact.address">
+        <div class="form-group row">
+          <div class="col-md-4">
+            <label for="address">Address</label>
+          </div>
+          <div class="col-md-8">
+            <input id="address" name="address" type="text" class="form-control input-md"
+                   [(ngModel)]="contact.address">
+          </div>
         </div>
-      </div>
 
-      <div class="form-group row">
-        <label class="col-md-4 control-label" for="notes">Notes</label>
-        <div class="col-md-8">
+        <div class="form-group row">
+          <div class="col-md-4">
+            <label for="notes">Notes</label>
+          </div>
+          <div class="col-md-8">
                         <textarea class="form-control" id="notes" name="notes"
                                   [(ngModel)]="contact.notes"></textarea>
+          </div>
         </div>
-      </div>
+      </section>
     </form>
   </div>
   <div class="modal-footer">
     <button id="add-contact-modal-cancel" class="btn btn-link"
-            (click)="activeModal.dismiss()">Cancel
+            (click)="closeModal()">Cancel
     </button>
     <button id="add-contact-modal-save" class="btn btn-primary"
             [disabled]="!addContactForm.form.valid"
             (click)="save(contact)">Save
     </button>
   </div>
-</div>
+</clr-modal>

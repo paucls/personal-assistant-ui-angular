@@ -1,8 +1,8 @@
-import { async, ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/testing';
+import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { Http } from '@angular/http';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { ClarityModule } from 'clarity-angular';
 
 import { AddContactModalComponent } from './add-contact-modal.component';
 import { Contact } from '../contact';
@@ -16,15 +16,16 @@ describe('AddContactModalComponent', () => {
   let component: AddContactModalComponent;
   let fixture: ComponentFixture<AddContactModalComponent>;
   let contactsService: ContactsService;
-  let ngbActiveModal: NgbActiveModal;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule],
+      imports: [
+        FormsModule,
+        ClarityModule.forRoot(),
+      ],
       declarations: [AddContactModalComponent],
       providers: [
         {provide: Http, useClass: class HttpStub {}},
-        {provide: NgbActiveModal, useClass: class NgbActiveModalStub { close() {}}},
         {provide: ToastrService, useClass: class ToastrServiceStub { success() {}}}
       ]
     })
@@ -38,11 +39,7 @@ describe('AddContactModalComponent', () => {
     // ContactsService from the root injector
     contactsService = fixture.debugElement.injector.get(ContactsService);
 
-    // NgbActiveModal from the root injector
-    ngbActiveModal = fixture.debugElement.injector.get(NgbActiveModal);
-
     spyOn(contactsService, 'saveContact').and.returnValue(Promise.resolve());
-    spyOn(ngbActiveModal, 'close');
   });
 
   it('should be created', () => {
@@ -58,11 +55,14 @@ describe('AddContactModalComponent', () => {
       expect(contactsService.saveContact).toHaveBeenCalledWith(CONTACT);
     });
 
-    it('should close the modal', fakeAsync(() => {
-      component.save(CONTACT);
+    it('should raise modal closed event', fakeAsync(() => {
+      let closeResult;
+      component.modalClosed.subscribe((result) => closeResult = result);
 
+      component.save(CONTACT);
       tick();
-      expect(ngbActiveModal.close).toHaveBeenCalled();
+
+      expect(closeResult).toBe('success');
     }));
 
   });

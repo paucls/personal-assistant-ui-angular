@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
 import { ClarityModule } from 'clarity-angular';
 
@@ -29,7 +28,6 @@ import { ShoppingModule } from './shopping/shopping.module';
     BrowserModule,
     FormsModule,
     HttpModule,
-    NgbModule.forRoot(),
     ToastrModule.forRoot({positionClass: 'toast-bottom-right', timeOut: 1500}),
     ClarityModule.forRoot(),
 

@@ -1,8 +1,8 @@
-import {Component} from '@angular/core';
-import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-import {ContactsService} from '../contacts.service';
-import {Contact} from '../contact';
-import {ToastrService} from "ngx-toastr";
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+
+import { ContactsService } from '../contacts.service';
+import { Contact } from '../contact';
 
 @Component({
   selector: 'app-add-contact-modal',
@@ -11,17 +11,26 @@ import {ToastrService} from "ngx-toastr";
 })
 export class AddContactModalComponent {
 
+  @Input() isModalOpened = false;
+  @Output() modalClosed = new EventEmitter();
+
   contact: Contact = {};
 
-  constructor(public activeModal: NgbActiveModal, public contactsService: ContactsService,
-              public toastrService: ToastrService) {
+  constructor(public contactsService: ContactsService, public toastrService: ToastrService) {
   }
 
   save(contact) {
     this.contactsService
       .saveContact(contact)
-      .then(this.activeModal.close)
-      .then(() => this.toastrService.success('Contact added successfully'));
+      .then(() => {
+        this.modalClosed.emit('success');
+        this.toastrService.success('Contact added successfully')
+      });
+  }
+
+  closeModal(result: string = 'dismissed') {
+    this.isModalOpened = false;
+    this.modalClosed.emit(result);
   }
 
 }

@@ -1,8 +1,8 @@
 import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { Http } from '@angular/http';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { ClarityModule } from 'clarity-angular';
 
 import { EditContactModalComponent } from './edit-contact-modal.component';
 import { Contact } from 'app/contacts/contact';
@@ -16,15 +16,16 @@ describe('EditContactModalComponent', () => {
   let component: EditContactModalComponent;
   let fixture: ComponentFixture<EditContactModalComponent>;
   let contactsService: ContactsService;
-  let ngbActiveModal: NgbActiveModal;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule],
+      imports: [
+        FormsModule,
+        ClarityModule.forRoot(),
+      ],
       declarations: [EditContactModalComponent],
       providers: [
         {provide: Http, useClass: class HttpStub {}},
-        {provide: NgbActiveModal, useClass: class NgbActiveModalStub { close() {}}},
         {provide: ToastrService, useClass: class ToastrServiceStub { success() {}}}
       ]
     })
@@ -39,11 +40,7 @@ describe('EditContactModalComponent', () => {
     // ContactsService from the root injector
     contactsService = fixture.debugElement.injector.get(ContactsService);
 
-    // NgbActiveModal from the root injector
-    ngbActiveModal = fixture.debugElement.injector.get(NgbActiveModal);
-
     spyOn(contactsService, 'updateContact').and.returnValue(Promise.resolve());
-    spyOn(ngbActiveModal, 'close');
   });
 
   it('should be created', () => {
@@ -59,11 +56,14 @@ describe('EditContactModalComponent', () => {
       expect(contactsService.updateContact).toHaveBeenCalledWith(CONTACT);
     });
 
-    it('should close the modal', fakeAsync(() => {
-      component.update(CONTACT);
+    it('should raise modal closed event', fakeAsync(() => {
+      let closeResult;
+      component.modalClosed.subscribe((result) => closeResult = result);
 
+      component.update(CONTACT);
       tick();
-      expect(ngbActiveModal.close).toHaveBeenCalled();
+
+      expect(closeResult).toBe('success');
     }));
 
   });

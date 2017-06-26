@@ -2,12 +2,16 @@ import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { Http } from '@angular/http';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
 import { ClarityModule } from 'clarity-angular';
+import { ToastrService } from 'ngx-toastr';
 
 import { ContactsComponent } from './contacts.component';
 import { ContactsService } from './contacts.service';
 import { Contact } from './contact';
+import { EditContactModalComponent } from './edit-contact-modal/edit-contact-modal.component';
+import { AddContactModalComponent } from './add-contact-modal/add-contact-modal.component';
+import { DeleteContactModalComponent } from './delete-contact-modal/delete-contact-modal.component';
 
 describe('ContactsComponent', () => {
 
@@ -22,12 +26,20 @@ describe('ContactsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ ClarityModule.forRoot() ],
-      declarations: [ ContactsComponent ],
+      imports: [
+        ClarityModule.forRoot(),
+        FormsModule
+      ],
+      declarations: [
+        ContactsComponent,
+        AddContactModalComponent,
+        DeleteContactModalComponent,
+        EditContactModalComponent
+      ],
       providers: [
         ContactsService,
-        {provide: NgbModal, useClass: class NgbModalStub {}},
-        {provide: Http, useClass: class HttpStub {}}
+        {provide: Http, useClass: class HttpStub {}},
+        {provide: ToastrService, useClass: class ToastrServiceStub { success() {}}}
       ]
     })
     .compileComponents();

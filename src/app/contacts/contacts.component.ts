@@ -1,11 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 import {ContactsService} from './contacts.service';
 import {Contact} from './contact';
-import {AddContactModalComponent} from './add-contact-modal/add-contact-modal.component';
-import {DeleteContactModalComponent} from './delete-contact-modal/delete-contact-modal.component';
-import {EditContactModalComponent} from './edit-contact-modal/edit-contact-modal.component';
 
 @Component({
   selector: 'app-contacts',
@@ -16,35 +12,45 @@ import {EditContactModalComponent} from './edit-contact-modal/edit-contact-modal
 export class ContactsComponent implements OnInit {
 
   contacts: Contact[];
+  selectedContact: Contact = {};
+  showAddContactModal = false;
+  showDeleteContactModal = false;
+  showEditContactModal = false;
 
-  constructor(private contactsService: ContactsService, private modalService: NgbModal) { }
+  constructor(private contactsService: ContactsService) { }
 
   ngOnInit() {
+    this.loadContacts();
+  }
+
+  loadContacts() {
     this.contactsService
       .getContacts()
       .then(contacts => this.contacts = contacts);
   }
 
   openAddContactModal() {
-    const modalRef = this.modalService.open(AddContactModalComponent);
-
-    modalRef.result.then((result) => this.ngOnInit(), () => {});
+    this.showAddContactModal = true;
   }
 
   openDeleteContactModal(contact) {
-    const modalRef = this.modalService.open(DeleteContactModalComponent);
-
-    modalRef.componentInstance.contact = contact;
-
-    modalRef.result.then((result) => this.ngOnInit(), () => {});
+    this.showDeleteContactModal = true;
+    this.selectedContact = contact;
   }
 
   openEditContactModal(contact) {
-    const modalRef = this.modalService.open(EditContactModalComponent);
+    this.showEditContactModal = true;
+    this.selectedContact = contact;
+  }
 
-    modalRef.componentInstance.contact = contact;
+  onModalClosed(result) {
+    this.showAddContactModal = false;
+    this.showDeleteContactModal = false;
+    this.showEditContactModal = false;
 
-    modalRef.result.then((result) => this.ngOnInit(), () => {});
+    if (result === 'success') {
+      this.loadContacts();
+    }
   }
 
 }

@@ -42,4 +42,15 @@
     </table>
 
   </div>
+
+  <app-add-contact-modal [isModalOpened]="showAddContactModal"
+                         (modalClosed)="onModalClosed($event)"></app-add-contact-modal>
+
+  <app-delete-contact-modal [contact]="selectedContact"
+                            [isModalOpened]="showDeleteContactModal"
+                            (modalClosed)="onModalClosed($event)"></app-delete-contact-modal>
+
+  <app-edit-contact-modal [contact]="selectedContact"
+                          [isModalOpened]="showEditContactModal"
+                          (modalClosed)="onModalClosed($event)"></app-edit-contact-modal>
 </div>
