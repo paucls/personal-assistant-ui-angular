@@ -1,3 +1,14 @@
-.actions-bar {
-  margin-bottom: 10px;
+.table {
+  th {
+    vertical-align: middle;
+  }
+
+  td {
+    vertical-align: middle;
+  }
+
+  .btn {
+    min-width: 0;
+    padding-right: 0;
+  }
 }
