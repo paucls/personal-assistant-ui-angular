@@ -41,6 +41,7 @@ https://paucls-assistant-ngx-bootstrap.herokuapp.com
 ![Demo](app-demo.gif)
 
 ## Version History
+1.1.0 - Replaced http-server by pushstate-server on Heroku to support html5 client routes.
 
 ## Documentation
 Links to some of the articles and documentation used to implement this project:
