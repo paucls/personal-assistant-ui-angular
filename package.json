@@ -4,9 +4,9 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "heroku-prebuild": "npm install -g pushstate-serve",
+    "heroku-prebuild": "npm install -g pushstate-server",
     "heroku-postbuild": "ng build --prod",
-    "start": "pushstate-serve ./dist 8080",
+    "start": "pushstate-server ./dist 8080",
     "start:dev": "ng serve",
     "build": "ng build",
     "test": "ng test --single-run --code-coverage",
