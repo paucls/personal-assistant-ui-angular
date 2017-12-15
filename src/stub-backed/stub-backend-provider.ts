@@ -5,7 +5,7 @@ import { environment } from '../environments/environment';
 import { logRequest, generateUuid, getUuidFromUrl } from './stub-backend-utils';
 
 import { Contact } from '../app/contacts/contact';
-import { ContactFixtureFactory } from '../app/contacts/contact-fixture.factory';
+import { contactFixtureFactory } from '../app/contacts/contact-fixture.factory';
 
 /**
  * Provider to allow the use of a stub backend instead of a real Http service for backend-less development.
@@ -26,12 +26,14 @@ export function stubBackendFactory(mockBackend: MockBackend, options: BaseReques
   console.log('Configuring stub Http backend...');
 
   let contacts: Contact[] = [
-    ContactFixtureFactory.build({firstName: 'John', lastName: 'Walsh', company: 'Hackett and Sons', phone: '1-352-850-5507', email: 'Abbigail37@gmail.com'}),
-    ContactFixtureFactory.build(),
-    ContactFixtureFactory.build(),
-    ContactFixtureFactory.build(),
-    ContactFixtureFactory.build()
-  ];
+    contactFixtureFactory.build({
+      firstName: 'John',
+      lastName: 'Walsh',
+      company: 'Hackett and Sons',
+      phone: '1-352-850-5507',
+      email: 'Abbigail37@gmail.com'
+    })
+  ].concat(contactFixtureFactory.buildList(4));
 
   mockBackend.connections.subscribe((connection: MockConnection) => {
 

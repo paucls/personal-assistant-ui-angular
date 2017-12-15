@@ -4,11 +4,11 @@ import { MockBackend } from '@angular/http/testing';
 
 import { ContactsService } from './contacts.service';
 import { Contact } from './contact';
-import { ContactFixtureFactory } from './contact-fixture.factory';
+import { contactFixtureFactory } from './contact-fixture.factory';
 
 describe('ContactsService', () => {
 
-  const CONTACT: Contact = ContactFixtureFactory.build();
+  const CONTACT: Contact = contactFixtureFactory.build();
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -30,7 +30,7 @@ describe('ContactsService', () => {
   describe('getContacts()', () => {
 
     it('should return all contacts from API', inject([ContactsService, MockBackend], fakeAsync((contactsService: ContactsService, mockBackend: MockBackend) => {
-      const contacts: Contact[] = ContactFixtureFactory.buildList(2);
+      const contacts: Contact[] = contactFixtureFactory.buildList(2);
       let result;
 
       mockBackend.connections.subscribe(connection => {
