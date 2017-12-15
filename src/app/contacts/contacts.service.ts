@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
+import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 import { Contact } from './contact';
@@ -7,13 +7,12 @@ import { Contact } from './contact';
 @Injectable()
 export class ContactsService {
 
-  private headers = new Headers({'Content-Type': 'application/json'});
   private url = '/contacts';
 
   constructor(private http: Http) {}
 
   getContacts(): Promise<Contact[]> {
-    return this.http.get(this.url, this.headers)
+    return this.http.get(this.url)
       .toPromise()
       .then(response => response.json() as Contact[])
       .catch(this.handleError);
@@ -22,7 +21,7 @@ export class ContactsService {
   deleteContact(id: string): Promise<Response> {
     const url = `${this.url}/${id}`;
 
-    return this.http.delete(url, {headers: this.headers})
+    return this.http.delete(url)
       .toPromise()
       .catch(this.handleError);
   }
@@ -30,7 +29,7 @@ export class ContactsService {
   saveContact(contact: Contact) {
     const url = `${this.url}`;
 
-    return this.http.post(url, JSON.stringify(contact), {headers: this.headers})
+    return this.http.post(url, JSON.stringify(contact))
       .toPromise()
       .then(response => response.json() as Contact)
       .catch(this.handleError);
@@ -39,7 +38,7 @@ export class ContactsService {
   updateContact(contact: Contact) {
     const url = `${this.url}/${contact.id}`;
 
-    return this.http.post(url, JSON.stringify(contact), {headers: this.headers})
+    return this.http.post(url, JSON.stringify(contact))
       .toPromise()
       .catch(this.handleError);
   }

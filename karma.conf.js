@@ -10,7 +10,6 @@ module.exports = function (config) {
       require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
-      require('karma-nightmare'),
       require('@angular/cli/plugins/karma')
     ],
     client:{
@@ -32,14 +31,20 @@ module.exports = function (config) {
     angularCli: {
       environment: 'dev'
     },
-    reporters: config.angularCli && config.angularCli.codeCoverage
-              ? ['progress', 'coverage-istanbul']
-              : ['progress', 'kjhtml'],
+    reporters: ['progress', 'kjhtml'],
     port: 9876,
+    proxies: {},
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Nightmare'],
+    browsers: ['ChromeHeadlessCustom'],
+    customLaunchers: {
+      ChromeHeadlessCustom: {
+        base: 'ChromeHeadless',
+        flags: ['--disable-web-security', '--no-sandbox']
+      }
+    },
+    browserNoActivityTimeout: 100000,
     singleRun: false
   });
 };
