@@ -1,15 +1,10 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ToastrModule } from "ngx-toastr";
-
-// used to create stub backend
-import { stubBackendProvider } from '../stub-backed/stub-backend-provider';
-import { MockBackend } from '@angular/http/testing';
-import { BaseRequestOptions } from '@angular/http';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -27,7 +22,7 @@ import { ShoppingModule } from './shopping/shopping.module';
     BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
-    HttpModule,
+    HttpClientModule,
     NgbModule.forRoot(),
     ToastrModule.forRoot({positionClass: 'toast-bottom-right', timeOut: 1500}),
 
@@ -38,12 +33,6 @@ import { ShoppingModule } from './shopping/shopping.module';
     ContactsModule,
     TasksModule,
     ShoppingModule
-  ],
-  providers: [
-    // used to create stub backend
-    stubBackendProvider,
-    MockBackend,
-    BaseRequestOptions
   ],
   bootstrap: [AppComponent]
 })

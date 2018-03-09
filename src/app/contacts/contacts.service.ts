@@ -1,24 +1,22 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-
+import { HttpClient } from '@angular/common/http';
 import { Contact } from './contact';
 
 @Injectable()
 export class ContactsService {
 
-  private url = '/contacts';
+  private url = '/api/contacts';
 
-  constructor(private http: Http) {}
+  constructor(private http: HttpClient) {}
 
   getContacts(): Promise<Contact[]> {
-    return this.http.get(this.url)
+    return this.http.get<Contact[]>(this.url)
       .toPromise()
-      .then(response => response.json() as Contact[])
       .catch(this.handleError);
   }
 
-  deleteContact(id: string): Promise<Response> {
+  deleteContact(id: string): Promise<Object> {
     const url = `${this.url}/${id}`;
 
     return this.http.delete(url)
@@ -26,19 +24,18 @@ export class ContactsService {
       .catch(this.handleError);
   }
 
-  saveContact(contact: Contact) {
+  saveContact(contact: Contact): Promise<Contact> {
     const url = `${this.url}`;
 
-    return this.http.post(url, JSON.stringify(contact))
+    return this.http.post<Contact>(url, contact)
       .toPromise()
-      .then(response => response.json() as Contact)
       .catch(this.handleError);
   }
 
   updateContact(contact: Contact) {
     const url = `${this.url}/${contact.id}`;
 
-    return this.http.post(url, JSON.stringify(contact))
+    return this.http.put<Contact>(url, contact)
       .toPromise()
       .catch(this.handleError);
   }

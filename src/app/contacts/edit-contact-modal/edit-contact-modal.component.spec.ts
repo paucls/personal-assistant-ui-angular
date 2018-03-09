@@ -1,6 +1,6 @@
 import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 
@@ -23,12 +23,12 @@ describe('EditContactModalComponent', () => {
       imports: [FormsModule],
       declarations: [EditContactModalComponent],
       providers: [
-        {provide: Http, useClass: class HttpStub {}},
-        {provide: NgbActiveModal, useClass: class NgbActiveModalStub { close() {}}},
-        {provide: ToastrService, useClass: class ToastrServiceStub { success() {}}}
+        {provide: HttpClient, useClass: class {}},
+        {provide: NgbActiveModal, useClass: class NgbActiveModalStub {close() {}}},
+        {provide: ToastrService, useClass: class ToastrServiceStub {success() {}}}
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

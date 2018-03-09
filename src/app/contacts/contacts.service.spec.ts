@@ -1,103 +1,87 @@
-import { TestBed, inject, tick, fakeAsync } from '@angular/core/testing';
-import { BaseRequestOptions, Http, ConnectionBackend, Response, ResponseOptions, RequestMethod } from '@angular/http';
-import { MockBackend } from '@angular/http/testing';
+import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 
 import { ContactsService } from './contacts.service';
 import { Contact } from './contact';
 import { contactFixtureFactory } from './contact-fixture.factory';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 describe('ContactsService', () => {
 
   const CONTACT: Contact = contactFixtureFactory.build();
 
+  let contactsService: ContactsService;
+  let httpMock: HttpTestingController;
+
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [
-        {
-          provide: Http,
-          deps: [MockBackend, BaseRequestOptions],
-          useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
-            return new Http(backend, defaultOptions);
-          }
-        },
-        {provide: MockBackend, useClass: MockBackend},
-        {provide: BaseRequestOptions, useClass: BaseRequestOptions},
-        {provide: ContactsService, useClass: ContactsService}
-      ]
+    const testBed = TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      providers: [ContactsService]
     });
+
+    contactsService = testBed.get(ContactsService);
+    httpMock = testBed.get(HttpTestingController);
   });
 
   describe('getContacts()', () => {
 
-    it('should return all contacts from API', inject([ContactsService, MockBackend], fakeAsync((contactsService: ContactsService, mockBackend: MockBackend) => {
+    it('should return all contacts from API', fakeAsync(() => {
       const contacts: Contact[] = contactFixtureFactory.buildList(2);
       let result;
 
-      mockBackend.connections.subscribe(connection => {
-        expect(connection.request.method).toBe(RequestMethod.Get);
-        expect(connection.request.url).toBe('/contacts');
-        const options = new ResponseOptions({body: contacts});
-        connection.mockRespond(new Response(options));
-      });
+      contactsService.getContacts().then(response => result = response);
 
-      contactsService.getContacts().then(contacts => {
-        result = contacts;
-      });
+      httpMock
+        .expectOne({method: 'GET', url: '/api/contacts'})
+        .flush(contacts);
       tick();
-
-      expect(result.length).toBe(contacts.length);
-    })));
+      expect(result).toBe(contacts);
+    }));
 
   });
 
   describe('deleteContact()', () => {
 
-    it('should call the API to delete the contact', inject([ContactsService, MockBackend], fakeAsync((contactsService: ContactsService, mockBackend: MockBackend) => {
-      mockBackend.connections.subscribe(connection => {
-        expect(connection.request.method).toBe(RequestMethod.Delete);
-        expect(connection.request.url).toBe(`/contacts/${CONTACT.id}`);
-        connection.mockRespond(new Response(new ResponseOptions()));
-      });
-
+    it('should call the API to delete the contact', () => {
       contactsService.deleteContact(CONTACT.id);
-    })));
+
+      const testRequest = httpMock.expectOne(`/api/contacts/${CONTACT.id}`);
+      expect(testRequest.request.method).toBe('DELETE');
+      testRequest.flush({});
+    });
 
   });
 
   describe('saveContact()', () => {
 
-    it('should call the API to save the new contact', inject([ContactsService, MockBackend], fakeAsync((contactsService: ContactsService, mockBackend: MockBackend) => {
+    it('should call the API to save the new contact', fakeAsync(() => {
       const newContact = {firstName: 'John Doe'};
       let result;
 
-      mockBackend.connections.subscribe(connection => {
-        expect(connection.request.method).toBe(RequestMethod.Post);
-        expect(connection.request.url).toBe(`/contacts`);
-        const options = new ResponseOptions({body: CONTACT});
-        connection.mockRespond(new Response(options));
-      });
+      contactsService.saveContact(newContact).then(contact => result = contact);
 
-      contactsService.saveContact(newContact).then(contact => {
-        result = contact;
-      });
+      httpMock
+        .expectOne({method: 'POST', url: '/api/contacts'})
+        .flush(CONTACT);
       tick();
-
       expect(result).toBe(CONTACT);
-    })));
+    }));
 
   });
 
   describe('updateContact()', () => {
 
-    it('should call the API to update the contact', inject([ContactsService, MockBackend], fakeAsync((contactsService: ContactsService, mockBackend: MockBackend) => {
-      mockBackend.connections.subscribe(connection => {
-        expect(connection.request.method).toBe(RequestMethod.Post);
-        expect(connection.request.url).toBe(`/contacts/${CONTACT.id}`);
-        connection.mockRespond(new Response(new ResponseOptions()));
-      });
+    it('should call the API to update the contact', fakeAsync(() => {
+      const updatedContact: Contact = contactFixtureFactory.build();
+      let result;
 
-      contactsService.updateContact(CONTACT);
-    })));
+      contactsService.updateContact(CONTACT).then(contact => result = contact);
+
+      httpMock
+        .expectOne({method: 'PUT', url: `/api/contacts/${CONTACT.id}`})
+        .flush(updatedContact);
+      tick();
+      expect(result).toBe(updatedContact);
+    }));
 
   });
 

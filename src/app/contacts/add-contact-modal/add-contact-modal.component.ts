@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {ToastrService} from 'ngx-toastr';
 import {ContactsService} from '../contacts.service';
 import {Contact} from '../contact';
-import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-add-contact-modal',
